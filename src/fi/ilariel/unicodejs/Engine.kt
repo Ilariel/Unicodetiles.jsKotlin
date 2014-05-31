@@ -1,13 +1,25 @@
 package fi.ilariel.unicodejs
 
 /**
- * Created by Ilariel on 30.5.2014.
+ * Created by Ilariel on 31.5.2014.
  */
 
+
 /**
- * The tile engine itself.
+ * The tile engine itself
+ *
+ * Constructs a new Engine object. If width or height is given,
+ * it will not attempt to fetch tiles outside the boundaries.
+ * In that case 0,0 is assumed as the upper-left corner of the world,
+ * but if no width/height is given also negative coords are valid.
+ *
+ * Parameters:
+ * vp - the [[Viewport]] instance to use as the viewport
+ * func - the function used for fetching tiles
+ * w - (optional) world width in tiles
+ * h - (optional) world height in tiles
  */
-native public abstract class Engine
+native(name = "ut.Engine") public class Engine(vp:Viewport, func:(x:Int,y:Int) -> Tile,v:Int? = null,h:Int? = null)
 {
 
     /**
@@ -46,7 +58,7 @@ native public abstract class Engine
     /**
      * Tiles outside of the range x = [0,width[; y = [0,height[ are not fetched.
      * Call parameterless overload in order to make the world infinite.
-     * 
+     *
      * Parameters:
      * width - new world width
      * height -  new world height
@@ -88,6 +100,11 @@ native public abstract class Engine
      *   y - viewport center y coordinate in the tile world
      */
     public fun update(x:Int,y:Int) : Unit = noImpl;
+
+    /**
+     * Calls engine's tile function explicitly
+     */
+    public fun tileFunc(x:Int,y:Int) : Tile = noImpl;
 
 
 }

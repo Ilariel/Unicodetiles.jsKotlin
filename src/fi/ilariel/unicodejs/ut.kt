@@ -4,50 +4,13 @@ package fi.ilariel.unicodejs
  * Created by Ilariel on 30.5.2014.
  */
 
-public native object ut
+
+
+
+
+native(name = "ut")
+public object ut
 {
-
-
-    /**
-     * Constructs a new [[Tile]] object.
-     * Parameters:
-     * ch - a character to display for this tile
-     * r - (optional) red foregorund color component 0-255
-     * g - (optional) green foreground color component 0-255
-     * b - (optional) blue foreground color component 0-255
-     * br - (optional) red background color component 0-255
-     * bg - (optional) green background color component 0-255
-     * bb - (optional) blue background color component 0-255
-     */
-    public fun Tile(ch:String, r:Int = 0, g:Int = 0, b:Int = 0, br:Int = 0, bg:Int = 0, bb:Int = 0) : Tile = noImpl;
-    /**
-     * Constructs a new Viewport object.
-     * If you wish to display a player character at the center, you should use odd sizes.
-     * Parameters:
-     * elem - the DOM element which shall be transformed into the tile engine
-     * w - (integer) width in tiles
-     * h - (integer) height in tiles
-     * renderer - (optional) choose rendering engine, see <Viewport.setRenderer>, defaults to "auto".
-     * squarify - (optional) set to true to force the tiles square; may break some box drawing
-     */
-    public fun Viewport(elem:dom.html.HTMLElement, w:Int, h:Int, renderer:String="auto", squarify:Boolean =false) : Viewport = noImpl;
-
-    /**
-     * Constructs a new Engine object. If width or height is given,
-     * it will not attempt to fetch tiles outside the boundaries.
-     * In that case 0,0 is assumed as the upper-left corner of the world,
-     * but if no width/height is given also negative coords are valid.
-     *
-     * Parameters:
-     * vp - the [[Viewport]] instance to use as the viewport
-     * func - the function used for fetching tiles
-     * w - (optional) world width in tiles
-     * h - (optional) world height in tiles
-     */
-    public fun Engine(vp:Viewport, func:(x:Int,y:Int) -> Tile) : Engine = noImpl;
-
-    public fun Engine(vp:Viewport, func:(x:Int,y:Int) -> Tile,v:Int,h:Int) : Engine = noImpl;
-
     //input.js
 
     /**
@@ -65,8 +28,6 @@ public native object ut
     public fun setKeyRepeatInterval(milliseconds : Int) : Unit = noImpl;
 
 
-    public fun initInput() : Unit = noImpl;
-
     /**
      * Initilizes input by assigning default key handlers and optional user's handlers.
      * This must be called in order to <ut.isKeyPressed> to work.
@@ -75,7 +36,7 @@ public native object ut
      * onkeyup - function(keyCode) for key up event handler.
      * Either define both parameters or define neither.
      */
-    public fun initInput(onKeyDown : (Int) -> Unit , onKeyUp : (Int) -> Unit) : Unit = noImpl;
+    public fun initInput(onKeyDown : ((k:Int) -> Unit)? = null , onKeyUp :((k:Int) -> Unit)? = null) : Unit = noImpl;
 
     /**
      * The interval when user's onKeyDown handler is called when a key is held down.

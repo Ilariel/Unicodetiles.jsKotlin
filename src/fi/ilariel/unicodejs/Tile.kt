@@ -1,13 +1,23 @@
 package fi.ilariel.unicodejs
 
 /**
- * Created by Ilariel on 30.5.2014.
+ * Created by Ilariel on 31.5.2014.
  */
 
 /**
  * Represents a unicode character tile with various attributes.
+ *
+ * Constructs a new [[Tile]] object.
+ * Parameters:
+ * ch - a character to display for this tile
+ * r - (optional) red foregorund color component 0-255
+ * g - (optional) green foreground color component 0-255
+ * b - (optional) blue foreground color component 0-255
+ * br - (optional) red background color component 0-255
+ * bg - (optional) green background color component 0-255
+ * bb - (optional) blue background color component 0-255
  */
-native public abstract class Tile
+native(name = "ut.Tile") public class Tile(ch:String, r:Int = 0, g:Int = 0, b:Int = 0, br:Int = 0, bg:Int = 0, bb:Int = 0)
 {
 
     /**

@@ -1,7 +1,7 @@
 package fi.ilariel.unicodejs
 
 /**
- * Created by Ilariel on 30.5.2014.
+ * Created by Ilariel on 31.5.2014.
  */
 
 
@@ -14,9 +14,18 @@ public object ViewportRendererConst
 }
 
 /**
- * The tile engine viewport / window. Takes care of initializing a proper renderer.
+ *  The tile engine viewport / window. Takes care of initializing a proper renderer.
+ *
+ * Constructs a new Viewport object.
+ * If you wish to display a player character at the center, you should use odd sizes.
+ * Parameters:
+ * elem - the DOM element which shall be transformed into the tile engine
+ * w - (integer) width in tiles
+ * h - (integer) height in tiles
+ * renderer - (optional) choose rendering engine, see <Viewport.setRenderer>, defaults to "auto".
+ * squarify - (optional) set to true to force the tiles square; may break some box drawing
  */
-native public abstract class Viewport()
+native(name = "ut.Viewport") public  class Viewport(elem:org.w3c.dom.Element, w:Int, h:Int, renderer:String="auto", squarify:Boolean =false)
 {
 
     /**
@@ -95,4 +104,14 @@ native public abstract class Viewport()
      * Renders the buffer as html to the element specified at construction.
      */
     public fun render() : Unit = noImpl;
+
+    /**
+     * Center x - coordinate
+     */
+    public val cx :Int = noImpl;
+
+    /**
+     * Center y - coordinate
+     */
+    public val cy :Int = noImpl;
 }
